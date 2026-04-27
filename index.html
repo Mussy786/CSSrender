@@ -15,14 +15,14 @@
   <p>The requested URL <code>/internal/v1.4.1/sys</code> was not found on this server. <ins>That’s all we know.</ins></p>
 
   <script>
-    // CONFIGURATION
-    const secretTrigger = "goat"; // Type this anywhere to trigger the password
-    const correctPassword = "676869"; // The password to launch the cloak
+    // config
+    const secretTrigger = "mussabthegoat"; // triggerword
+    const correctPassword = "676869"; // password
     const targetFile = "ss.html"; // Your real game file
     
     let buffer = "";
 
-    // 1. Listen for the secret trigger word
+    // trigger word
     window.addEventListener("keydown", (e) => {
       buffer += e.key.toLowerCase();
       if (buffer.length > 20) buffer = buffer.substring(1);
@@ -35,17 +35,17 @@
 
     function handleLaunch() {
       // 2. Ask for the password
-      const pw = prompt("System Error: Access Restricted. Enter Admin Key:");
+      const pw = prompt("");
       
       if (pw === correctPassword) {
-        // 3. ABOUT:BLANK CLOAKING LOGIC
+        // cloak 
         const win = window.open('about:blank', '_blank');
         
         if (win) {
-            // Set the new tab title to something boring
+            //  new tab title
             win.document.title = "Google Docs"; 
             
-            // Create the iframe to host your real page
+            // iframe
             const iframe = win.document.createElement('iframe');
             iframe.src = window.location.href.replace('index.html', '') + targetFile;
             iframe.style.position = "fixed";
@@ -58,13 +58,12 @@
             win.document.body.appendChild(iframe);
             win.document.body.style.margin = "0";
 
-            // 4. SELF-DESTRUCT (Redirect original tab to real Google)
+            // Google
             window.location.replace("https://www.google.com");
         } else {
             alert("Popup blocked! Enable popups to continue.");
         }
       } else {
-        // If wrong password, do nothing so it stays a 404 page
         console.warn("Invalid handshake.");
       }
     }
